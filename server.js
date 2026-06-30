@@ -12,13 +12,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const filePath = path.join(__dirname, "data.json");
 
-if (!fs.existsSync(filePath)) {
-  fs.writeFileSync(filePath, "[]");
+if (!fs.exists(filePath)) {
+  fs.writeFile(filePath, "[]");
 }
 
 const readData = () => {
   try {
-    const data = fs.readFileSync(filePath, "utf-8");
+    const data = fs.readFile(filePath, "utf-8");
     return JSON.parse(data);
   } catch (err) {
     return [];
@@ -26,7 +26,7 @@ const readData = () => {
 };
 
 const writeData = (data) => {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  fs.writeFile(filePath, JSON.stringify(data, null, 2));
 };
 
 app.get("/items", (req, res) => {
