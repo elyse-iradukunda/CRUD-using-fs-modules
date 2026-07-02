@@ -9,20 +9,24 @@ export const getItems = (req: Request, res: Response): void => {
 };
 
 export const createItem = async (req: Request, res: Response): Promise<void> => {
-  const dto = Object.assign(new CreateItemDto(), req.body);
+  const dto = new CreateItemDto();
+
+  dto.name = req.body.name;
 
   const errors = await validate(dto);
 
-  if (errors.length > 0) {
-    res.status(400).json(errors);
-    return;
-  }
+if (errors.length > 0) {
+  res.status(400).json({
+    message: "validation error"
+  });
+  return;
+}
 
   const items: Item[] = readData();
 
   const newItem: Item = {
     id: Date.now(),
-    ...dto
+    name: dto.name
   };
 
   items.push(newItem);
