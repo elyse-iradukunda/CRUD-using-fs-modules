@@ -1,18 +1,28 @@
 import { Request, Response } from "express";
-import { readData, writeData } from "../utils/file.ts";
-
-import { Item } from "../types/items.ts";
+import { readData, writeData } from "../utils/file";
+import { validate } from "class-validator";
+import { Item } from "../types/items";
+import { CreateItemDto } from "../DTO/itemDTO";
 
 export const getItems = (req: Request, res: Response): void => {
   res.json(readData());
 };
 
-export const createItem = (req: Request, res: Response): void => {
+export const createItem = async (req: Request, res: Response): Promise<void> => {
+  const dto = Object.assign(new CreateItemDto(), req.body);
+
+  const errors = await validate(dto);
+
+  if (errors.length > 0) {
+    res.status(400).json(errors);
+    return;
+  }
+
   const items: Item[] = readData();
 
   const newItem: Item = {
     id: Date.now(),
-    ...req.body
+    ...dto
   };
 
   items.push(newItem);
