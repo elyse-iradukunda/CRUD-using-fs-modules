@@ -1,14 +1,20 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "tsx watch server.ts"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.22.5",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
+    "express": "^5.2.1",
     "reflect-metadata": "^0.2.2"
   }
 }

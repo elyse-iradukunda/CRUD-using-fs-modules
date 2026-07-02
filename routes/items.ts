@@ -4,7 +4,7 @@ import {
   createItem,
   updateItem,
   deleteItem
-} from "../controllers/itemController.js";
+} from "../controllers/itemController.ts";
 
 const router: Router = express.Router();
 

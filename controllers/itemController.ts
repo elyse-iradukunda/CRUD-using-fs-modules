@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { readData, writeData } from "../utils/file";
+import { readData, writeData } from "../utils/file.js";
 import { validate } from "class-validator";
-import { Item } from "../types/items";
-import { CreateItemDto } from "../DTO/itemDTO";
+import { Item } from "../types/items.ts";
+import { CreateItemDto } from "../DTO/itemDTO.ts";
 
 export const getItems = (req: Request, res: Response): void => {
   res.json(readData());
