@@ -54,6 +54,7 @@ export const createItem = async (req: Request, res: Response): Promise<void> => 
 
 export const updateItem = async (req: Request, res: Response): Promise<void> => {
   const dto = new UpdateItemDto();
+  dto.id = Number(req.params.id);
   dto.name = req.body.name;
 
   const errors = await validate(dto);
